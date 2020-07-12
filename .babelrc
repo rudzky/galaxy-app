@@ -1,0 +1,10 @@
+// {
+//   "plugins": [
+//     ["babel-plugin-module-resolver", {
+//       "alias": {
+//         "": "./src",
+//         "@Menu": "../Menu" 
+//       }
+//     }]
+//   ]
+// }

@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
+import React, { useContext, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
 
 export default function WarriorAdd() {
 
-    const history = useHistory();
-    const navigationContext = useContext(MenuContext); 
+    let { pathname } = useLocation();
 
+    const history = useHistory();
+    const [linksContext, setLinksContext] = useContext(MenuContext);
+    
     const goBackHandle = () => {
         history.goBack();
     };
+
+    useEffect(() => {
+        setLinksContext(pathname);
+    });
 
     return(
         <div>

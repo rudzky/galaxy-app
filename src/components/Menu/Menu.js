@@ -7,58 +7,40 @@ import { LI } from './MenuStyles';
 export default function Menu() {
 
     const [warriorsCount, setWarriorsCount] = useState(0);
-    const [linkHighlight, setLinkHighlight] = useState('main_page');
     const myWarriors = useContext(MyWarriorsContext);
-    const [context, setContext] = useContext(MenuContext);
+    const [linksContext, setLinksContext] = useContext(MenuContext);
 
     useEffect(() => {
         setWarriorsCount(myWarriors.length);
-        setLinkHighlight(context);
-    },[MyWarriorsContext, MenuContext]);
-
-    const handlePageChange = (page) => {
-        switch(page)
-        {
-            case "main_page": 
-                if(context !== page) setContext("main_page");
-                break;
-            case "add_warrior": 
-                if(context !== page) setContext("add_warrior");
-                break;  
-            case "my_list": 
-                if(context !== page) setContext("my_list");
-                break; 
-        }
-    };
+    },[linksContext]);
 
     const handleLinkChange = (page) => {
-        return (linkHighlight === page ? true : false); 
+        return (linksContext === page ? 'green' : ''); 
     }
     
     return(
         <nav>
             <ul>
-                <Link to="/" onClick={handlePageChange("main_page")}>
-                    <li
-                        // hightlight={handleLinkChange("main_page")}
-                        {{handleLinkChange("main_page")}}
+                <Link to="/">
+                    <LI
+                        hightlight={() => handleLinkChange("/")}
                     >
                         Strona główna
-                    </li>
+                    </LI>
                 </Link>
                 <Link to="/add_warrior">
-                    <li 
-                        hightlight={handleLinkChange('add_warrior')}
+                    <LI 
+                        hightlight={() => handleLinkChange("/add_warrior")}
                     >
                         Dodaj wojownika
-                    </li>
+                    </LI>
                 </Link>
                 <Link to="/my_list">
-                    <li 
-                        hightlight={handleLinkChange('my_list')}
+                    <LI 
+                        hightlight={() => handleLinkChange("/my_list")}
                     >
                         Moja lista({warriorsCount})
-                    </li>
+                    </LI>
                 </Link>
             </ul>
         </nav>
