@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
 
-const MyWarriorsContext = createContext([]);
+const MyWarriorsContext = createContext(0);
 
 export default MyWarriorsContext; 

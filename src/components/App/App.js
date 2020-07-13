@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import axios from 'axios';
 import Menu from '../Menu/Menu';
 import Main from '../Main/Main';
@@ -14,6 +15,7 @@ export default function App() {
   const [linksContext, setLinksContext] = useState("/");
   const [allWarriorsData, setAllWarriorsData] = useState([]);
   const [warriorsNumbers, setWarriorsNumbers] = useState([]);
+  const [myWarriorsListContext, setMyWarriorsListContext] = useState([]);
 
   const APIAddress = "https://e3decdb6-2e8f-4c0b-9883-c1b7ce735dee.mock.pstmn.io/galaxy";
   const getWarriorsData = () => {
@@ -35,6 +37,7 @@ export default function App() {
   }; 
 
   useEffect( () => {
+
     if(localStorage.getItem('expire') < Date.now() || localStorage.getItem('expire') === null ){
       getWarriorsData();
     }else{
@@ -46,24 +49,28 @@ export default function App() {
       setAllWarriorsData(warriros_from_localstorage);
       setWarriorsNumbers(warriors_numbers);
     };
+
+    setMyWarriorsListContext(JSON.parse(localStorage.getItem('myWarriorsList')) || []);
     
   },[]);
 
   return (
     <Router>
       <MenuContext.Provider value={[linksContext, setLinksContext]}>
-        <Menu />
-        <AllWarriorsContext.Provider value={{
-          warriorsData: allWarriorsData,
-          warriorsNumbers: warriorsNumbers
-        }}>
-          <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/add_warrior" component={WarriorAdd} />
-            <Route path="/my_list" component={MyList} />
-            <Route path="/warrior_page/:identy" component={WarriorPage} />
-          </Switch>
-        </AllWarriorsContext.Provider>
+        <MyWarriorsContext.Provider value={[myWarriorsListContext, setMyWarriorsListContext]}>
+          <Menu />
+          <AllWarriorsContext.Provider value={{
+            warriorsData: allWarriorsData,
+            warriorsNumbers: warriorsNumbers
+          }}>
+            <Switch>
+              <Route path="/" exact component={Main} />
+              <Route path="/add_warrior" component={WarriorAdd} />
+              <Route path="/my_list" component={MyList} />
+              <Route path="/warrior_page/:identy" component={WarriorPage} />
+            </Switch>
+          </AllWarriorsContext.Provider>
+        </MyWarriorsContext.Provider>
       </MenuContext.Provider>
     </Router>
   );

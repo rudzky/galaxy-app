@@ -5,17 +5,33 @@ import AllWarriorsContext from '../../contexts/AllWariorsContext';
 
 export default function WarriorCard({ identy }) {
 
-    const [listMember, setListMember] = useState(false);
+    const [addToListButton, setButtonToggle] = useState(true);
     const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
-
+    const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
     const {number, name, skill, description} = warriorsData[identy];
 
-    // useEffect(() => {
-    //     let listMembersNumbers = localStorage.getItem('warriorsNumbers');
-    //     if(listMembersNumbers.includes(identy)){
-    //         setListMember(true);
-    //     }
-    // });
+    const handleAddToMyList = () => {
+        if(addToListButton) {
+            setMyListWarriorsContext(myListWarriorsContext => [...myListWarriorsContext, identy]);
+        }else{
+            setMyListWarriorsContext(myListWarriorsContext => myListWarriorsContext.filter(e => e !== identy ));
+        }
+        setButtonToggle(addToListButton => !addToListButton);
+    };
+
+    useEffect(() => {
+        console.log(JSON.parse(localStorage.getItem('myWarriorsList')));
+        console.log(myListWarriorsContext);
+        if(JSON.parse(localStorage.getItem('myWarriorsList')) !== myListWarriorsContext){
+            localStorage.setItem('myWarriorsList', JSON.stringify(myListWarriorsContext));
+        } 
+    },[addToListButton]);
+
+    useEffect(() => {
+        if(myListWarriorsContext.includes(identy)){
+            setButtonToggle(addToListButton => !addToListButton);
+        }
+    },[]);
 
     return(
         <div>
@@ -31,9 +47,12 @@ export default function WarriorCard({ identy }) {
                 Wyświetl szczegóły
             </Link>
             
-            <Link to="/my_list">
-                <button>dodaj do mojej listy</button>
-            </Link>
+            <button 
+                onClick={handleAddToMyList}
+            >
+                {addToListButton ? 'dodaj do' : 'usuń z'} mojej listy
+            </button>
+
         </div>
     );
 }

@@ -7,12 +7,12 @@ import { LI } from './MenuStyles';
 export default function Menu() {
 
     const [warriorsCount, setWarriorsCount] = useState(0);
-    const myWarriors = useContext(MyWarriorsContext);
+    const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
     const [linksContext, setLinksContext] = useContext(MenuContext);
 
     useEffect(() => {
-        setWarriorsCount(myWarriors.length);
-    },[linksContext]);
+        setWarriorsCount(myWarriorsList.length);
+    },[myWarriorsList]);
 
     const handleLinkChange = (page) => {
         return (linksContext === page ? 'green' : ''); 
