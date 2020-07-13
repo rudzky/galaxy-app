@@ -38,9 +38,12 @@ export default function App() {
 
   useEffect( () => {
 
+    console.log(JSON.parse(localStorage.getItem('myWarriorsList')));
+
     if(localStorage.getItem('expire') < Date.now() || localStorage.getItem('expire') === null ){
       getWarriorsData();
-    }else{
+    }
+    else{
       let warriors_numbers = JSON.parse(localStorage.getItem('warriorsNumbers'));
       const warriros_from_localstorage = [];
       warriors_numbers.forEach((e) => {

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
-import WarriorCard from '../WarriorCard/WarriorCard';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
-import axios from 'axios';
+import WarriorCard from '../WarriorCard/WarriorCard';
 
 export default function Main() {
 
@@ -12,8 +11,6 @@ export default function Main() {
     const [dataExisting, setDataExisting] = useState(false);
     const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
 
-    //const [numbersInStorage, setNumbersInStorage] = useState(JSON.parse(localStorage.getItem('warriorsNumbers')) || []);
-
     useEffect( () => {
         setLinksContext(pathname);
     },[]);
@@ -21,7 +18,7 @@ export default function Main() {
     return(
         <div>
             {
-                warriorsData.map((el, idx) => <WarriorCard identy={idx} key={idx} />)
+                warriorsData.map(({number}) => <WarriorCard identy={number} key={number} />)
             }
         </div>
     );

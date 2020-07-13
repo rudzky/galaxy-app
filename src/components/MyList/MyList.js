@@ -1,15 +1,18 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
+import MyWarriorsContext from '../../contexts/MyWarriorsContext';
+import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import WarriorCard from '../WarriorCard/WarriorCard';
 
 export default function MyList() {
 
-    console.log({...localStorage});
-
     let { pathname } = useLocation();
     const history = useHistory();
-
     const [linksContext, setLinksContext] = useContext(MenuContext);
+    const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
+    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
+    const [myWarriorsData, setMyWarriorsData] = useState([]);
 
     const goBackHandle = () => {
         history.goBack();
@@ -17,7 +20,11 @@ export default function MyList() {
     
     useEffect(() => {
         setLinksContext(pathname);
-    });
+        let filtredWarriors = warriorsData.filter((e,id) => {
+            if(myWarriorsList.includes(e.number)) return e;
+        });
+        setMyWarriorsData(filtredWarriors);
+    },[myWarriorsList]);
 
     return(
         <div>
@@ -27,6 +34,9 @@ export default function MyList() {
             >
                 Wróć
             </button>
+            {
+                myWarriorsData.map(({number}, idx) => <WarriorCard reserveButton identy={number} key={number} />)
+            }
         </div>
     );
 }

@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 
-export default function WarriorCard({ identy }) {
+export default function WarriorCard({ reserveButton, identy }) {
+
+    const localstoragePosition = identy - 1;
 
     const [addToListButton, setButtonToggle] = useState(true);
     const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
     const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
-    const {number, name, skill, description} = warriorsData[identy];
+    const {number, name, skill, description} = warriorsData[localstoragePosition];
 
     const handleAddToMyList = () => {
         if(addToListButton) {
-            setMyListWarriorsContext(myListWarriorsContext => [...myListWarriorsContext, identy]);
+            setMyListWarriorsContext(myListWarriorsContext => [...myListWarriorsContext, number]);
         }else{
-            setMyListWarriorsContext(myListWarriorsContext => myListWarriorsContext.filter(e => e !== identy ));
+            setMyListWarriorsContext(myListWarriorsContext => myListWarriorsContext.filter(e => e !== number ));
         }
         setButtonToggle(addToListButton => !addToListButton);
     };
 
     useEffect(() => {
-        console.log(JSON.parse(localStorage.getItem('myWarriorsList')));
-        console.log(myListWarriorsContext);
         if(JSON.parse(localStorage.getItem('myWarriorsList')) !== myListWarriorsContext){
             localStorage.setItem('myWarriorsList', JSON.stringify(myListWarriorsContext));
         } 
@@ -29,7 +29,7 @@ export default function WarriorCard({ identy }) {
 
     useEffect(() => {
         if(myListWarriorsContext.includes(identy)){
-            setButtonToggle(addToListButton => !addToListButton);
+            setButtonToggle(false);
         }
     },[]);
 
