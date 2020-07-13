@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
+import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import axios from 'axios';
 import Menu from '../Menu/Menu';
 import Main from '../Main/Main';
@@ -11,48 +12,58 @@ import WarriorPage from '../WarriorPage/WarriorPage';
 export default function App() {
 
   const [linksContext, setLinksContext] = useState("/");
-  const [localStorageSavingDone, setLocalStorageSavingDone] = useState(false);
-  //const [warriorsData, setWarriorsData] = useState();
-  // let MYCONTEXT;
+  const [allWarriorsData, setAllWarriorsData] = useState([]);
+  const [warriorsNumbers, setWarriorsNumbers] = useState([]);
 
-  // const APIAddress = "https://e3decdb6-2e8f-4c0b-9883-c1b7ce735dee.mock.pstmn.io/galaxy";
-  // //"https://run.mocky.io/v3/6fdf71a2-716a-470f-a905-7e9b4d1ba12c"
+  const APIAddress = "https://e3decdb6-2e8f-4c0b-9883-c1b7ce735dee.mock.pstmn.io/galaxy";
+  const getWarriorsData = () => {
+    axios
+      .get(APIAddress)
+      .then(response => response.data)
+      .then(({warriors}) => {
+        setAllWarriorsData(warriors);
+          let warriors_numbers = [];
+          warriors.forEach((warrior, index) => {
+            let warriorString = JSON.stringify(warrior);
+            localStorage.setItem(index, warriorString);
+            warriors_numbers.push(index);
+          });
+        setWarriorsNumbers(warriors_numbers);
+          localStorage.setItem('warriorsNumbers', JSON.stringify(warriors_numbers));
+          localStorage.setItem('expire', Date.now() + 259200000);
+      });
+  }; 
 
-  // const getWarriorsData = () => {
-  //   axios
-  //     .get(APIAddress)
-  //     .then(response => response.data)
-  //     .then(({warriors}) => {
-  //       //setWarriorsData(warriors);
-  //       let warriors_numbers = [];
-  //       warriors.forEach((warrior) => {
-  //         let warriorString = JSON.stringify(warrior);
-  //         localStorage.setItem(warrior.number, warriorString);
-  //         warriors_numbers.push(warrior.number);
-  //       });
-  //       localStorage.setItem('warriorsNumbers', JSON.stringify(warriors_numbers));
-  //       localStorage.setItem('expire', Date.now() + 259200000);
-  //     });
-  // }; 
-
-  // useEffect( () => {
-  //   if(localStorage.getItem('expire') < Date.now() || localStorage.getItem('expire') === null ){
-  //     getWarriorsData();
-  //   }
-  // },[]);
-
-  // console.log(MYCONTEXT);
+  useEffect( () => {
+    if(localStorage.getItem('expire') < Date.now() || localStorage.getItem('expire') === null ){
+      getWarriorsData();
+    }else{
+      let warriors_numbers = JSON.parse(localStorage.getItem('warriorsNumbers'));
+      const warriros_from_localstorage = [];
+      warriors_numbers.forEach((e) => {
+        warriros_from_localstorage.push(JSON.parse(localStorage.getItem(e)));
+      });
+      setAllWarriorsData(warriros_from_localstorage);
+      setWarriorsNumbers(warriors_numbers);
+    };
+    
+  },[]);
 
   return (
     <Router>
       <MenuContext.Provider value={[linksContext, setLinksContext]}>
         <Menu />
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/add_warrior" component={WarriorAdd} />
-          <Route path="/my_list" component={MyList} />
-          <Route path="/warrior_page/:identy" component={WarriorPage} />
-        </Switch>
+        <AllWarriorsContext.Provider value={{
+          warriorsData: allWarriorsData,
+          warriorsNumbers: warriorsNumbers
+        }}>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/add_warrior" component={WarriorAdd} />
+            <Route path="/my_list" component={MyList} />
+            <Route path="/warrior_page/:identy" component={WarriorPage} />
+          </Switch>
+        </AllWarriorsContext.Provider>
       </MenuContext.Provider>
     </Router>
   );

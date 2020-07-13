@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
+import AllWarriorsContext from '../../contexts/AllWariorsContext';
 
 export default function WarriorCard({ identy }) {
 
     const [listMember, setListMember] = useState(false);
+    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
 
-    const {number, name, skill, description} = JSON.parse(localStorage.getItem(identy));
+    const {number, name, skill, description} = warriorsData[identy];
 
-    useEffect(() => {
-        let listMembersNumbers = localStorage.getItem('warriorsNumbers');
-        if(listMembersNumbers.includes(identy)){
-            setListMember(true);
-        }
-    });
+    // useEffect(() => {
+    //     let listMembersNumbers = localStorage.getItem('warriorsNumbers');
+    //     if(listMembersNumbers.includes(identy)){
+    //         setListMember(true);
+    //     }
+    // });
 
     return(
         <div>
