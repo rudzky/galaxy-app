@@ -11,7 +11,7 @@ export default function WarriorPage() {
     let { pathname } = useLocation();
     let { identy } = useParams();
     identy = parseInt(identy);
-    const history = useHistory(); 
+    //const history = useHistory(); 
 
     //ALL CONTEXT
     const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
@@ -41,9 +41,9 @@ export default function WarriorPage() {
         setSubpageView(true);
     }
 
-    const goBackHandle = () => {
-        history.goBack();
-    };
+    // const goBackHandle = () => {
+    //     history.goBack();
+    // };
 
     // const handleReserve = () => {
     //     setReserveView(true);

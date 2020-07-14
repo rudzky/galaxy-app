@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import MenuContext from '../../contexts/MenuContext';
 import { LI } from './MenuStyles';
+import logo from '../../assets/logo.svg';
 
 export default function Menu() {
 
@@ -20,6 +21,7 @@ export default function Menu() {
     
     return(
         <nav>
+            <img src={logo} alt="logo"/>
             <ul>
                 <Link to="/">
                     <LI

@@ -35,6 +35,7 @@ export default function WarriorCard({ identy }) {
         <div>
             <h1>#{number}</h1>
             {/* <img src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} alt=""/> */}
+            {/* <img src={`http://source.unsplash.com/random/50x50?jedi`} alt=""/> */}
             <h2>{name}</h2>
             <h3>{skill}</h3>
             <p>{description}</p>
