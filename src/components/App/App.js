@@ -9,6 +9,7 @@ import Main from '../Main/Main';
 import WarriorAdd from '../WarriorAdd/WarriorAdd';
 import MyList from '../MyList/MyList';
 import WarriorPage from '../WarriorPage/WarriorPage';
+import NotFound from '../404/NotFound';
 
 export default function App() {
 
@@ -29,8 +30,9 @@ export default function App() {
           let warriors_numbers = [];
           warriors.forEach((warrior, index) => {
             let warriorString = JSON.stringify(warrior);
-            localStorage.setItem(index, warriorString);
-            warriors_numbers.push(index);
+            //localStorage.setItem(index, warriorString);
+            localStorage.setItem(warrior.number, warriorString);
+            warriors_numbers.push(warrior.number);
           });
         //setWarriorsNumbers(warriors_numbers);
           localStorage.setItem('warriorsNumbers', JSON.stringify(warriors_numbers));
@@ -70,6 +72,7 @@ export default function App() {
               <Route path="/add_warrior" component={WarriorAdd} />
               <Route path="/my_list" component={MyList} />
               <Route path="/warrior_page/:identy" component={WarriorPage} />
+              <Route component={NotFound} />
             </Switch>
           </AllWarriorsContext.Provider>
         </MyWarriorsContext.Provider>

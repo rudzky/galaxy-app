@@ -4,14 +4,11 @@ import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 // import { withTheme } from 'styled-components';
 
-export default function Reserve({ toggleReserveView, identy }) {
+export default function Reserve({ identy, hide }) {
 
-    const localstoragePosition = identy - 1;
-    //{ warriorsData, warriorsNumbers }
-    //ALL
-    //const { reserveWarriorsData, setReserveAllWarriorsData } = useContext(AllWarriorsContext);
+    //const localstoragePosition = identy;
+
     const [reserveWarriorsListContext, setReserveMyWarriorsListContext] = useContext(AllWarriorsContext);
-    //LIST
     const [reserveWarriorsNumbers, setReserveWarriorsNumbers] = useContext(MyWarriorsContext);
 
     const [redirect, setRedirect] = useState(false);
@@ -26,10 +23,12 @@ export default function Reserve({ toggleReserveView, identy }) {
 
     const handleSendToReserve = () => {
 
+        console.log('rezerwa');
+
         setReserveWarriorsNumbers(reserveWarriorsNumbers => reserveWarriorsNumbers.filter(e => e!==identy));
-        localStorage.removeItem(localstoragePosition);
+        localStorage.removeItem(identy);
         let localstorageWarriorsNumbers = JSON.parse(localStorage.getItem('warriorsNumbers'));
-        localStorage.setItem('warriorsNumbers', JSON.stringify(localstorageWarriorsNumbers.filter(e => e !== localstoragePosition)));
+        localStorage.setItem('warriorsNumbers', JSON.stringify(localstorageWarriorsNumbers.filter(e => e !== identy)));
 
         setReserveMyWarriorsListContext((reserveWarriorsListContext) => {
             return reserveWarriorsListContext.filter((e) => {
@@ -41,14 +40,12 @@ export default function Reserve({ toggleReserveView, identy }) {
             let localstorageMyList = JSON.parse(localStorage.getItem('myWarriorsList'));
             localStorage.setItem('myWarriorsList', JSON.stringify(localstorageMyList.filter(e => e !== identy)));
         }
-
         setRedirect(true);
-
     };
 
-    const handleTabClose = () => {
-        toggleReserveView(false);
-    };
+    // const handleTabClose = () => {
+    //     hide(false);
+    // };
 
     return(
         <div style={style}>
@@ -65,7 +62,7 @@ export default function Reserve({ toggleReserveView, identy }) {
                 Przenieś do rezerwy
             </button>
             <button
-                onClick={handleTabClose}
+                onClick={hide}
             >
                 Anuluj
             </button>

@@ -11,8 +11,6 @@ export default function Main() {
     const [dataExisting, setDataExisting] = useState(false);
     const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
 
-    console.log('MAIN - ALL', myWarriorsListContext);
-
     useEffect( () => {
         setLinksContext(pathname);
     },[]);
@@ -20,7 +18,7 @@ export default function Main() {
     return(
         <div>
             {
-                myWarriorsListContext.map(({number}, idx) => <WarriorCard identy={number} key={idx} />)
+                myWarriorsListContext.map(({number}) => <WarriorCard identy={number} key={number} />)
             }
         </div>
     );

@@ -39,6 +39,9 @@ export default function MyList() {
             {
                 myWarriorsData.map(({number}, idx) => <WarriorCard reserveButton identy={number} key={number} />)
             }
+            {
+                (myWarriorsList.length === 0) && <p>Lista jest pusta</p>
+            }
         </div>
     );
 }

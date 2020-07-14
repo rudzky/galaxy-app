@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState, useReducer } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
@@ -22,6 +23,9 @@ export default function WarriorAdd() {
     const [name, setName] = useState('');
     const [skill, setSkill] = useState('');
     const [describe, setDescribe] = useState('');
+
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     const reducer = (state, action) => {
         switch(action.type) {
@@ -88,9 +92,31 @@ export default function WarriorAdd() {
         }
     };
 
-    const addWarrior = () => {
-
+    const addWarrior = (e) => {
+        e.preventDefault();
+        setButtonDisabled(true);
+        let newWarrior = {
+            number: parseInt(number),
+            name: name,
+            skill: skill,
+            description: describe
+        };
+        setAllWarriorsContext((allWarriorsContext) => {
+            return [...allWarriorsContext, newWarrior];
+        });
+        localStorage.setItem(newWarrior.number, JSON.stringify(newWarrior));
+        let warriorsNumbersInLocalstorage = JSON.parse(localStorage.getItem('warriorsNumbers'));
+        localStorage.setItem('warriorsNumbers',JSON.stringify([...warriorsNumbersInLocalstorage, newWarrior.number]));
+        setRedirect(true);
     };
+
+    useEffect(() => {
+        if(state.name && state.number && state.skill && state.description){
+            setButtonDisabled(false);
+        }else{
+            setButtonDisabled(true);
+        }
+    },[state]);
 
     useEffect(() => {
         setLinksContext(pathname);
@@ -98,6 +124,10 @@ export default function WarriorAdd() {
 
     return(
         <div>
+            {
+                redirect && <Redirect to="/" />
+            }
+            
             <button
                 onClick={goBackHandle}
             >
@@ -111,8 +141,18 @@ export default function WarriorAdd() {
                 <textarea name="skill" name="skill" rows="5" value={skill} onChange={updateSkill} maxLength="100"></textarea>
                 <textarea name="describe" name="describe" rows="8" value={describe} onChange={updateDescribe} maxLength="150"></textarea>
             
-                <button type="submit">Dodaj</button>
-                <button>Anuluj</button>
+                <button 
+                    type="submit"
+                    disabled={buttonDisabled}
+                        //(state.name && state.number && state.skill && state.description) ? false : true}
+                >
+                    Dodaj
+                </button>
+                <Link
+                    to="/"
+                >
+                    Anuluj
+                </Link>
 
             </form>
         </div>
