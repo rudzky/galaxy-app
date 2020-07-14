@@ -3,20 +3,18 @@ import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 
-export default function WarriorCard({ reserveButton, identy }) {
-
-    const localstoragePosition = identy - 1;
+export default function WarriorCard({ identy }) {
 
     const [addToListButton, setButtonToggle] = useState(true);
-    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
+    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
     const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
-    const {number, name, skill, description} = warriorsData[localstoragePosition];
+    const {number, name, skill, description} = myWarriorsListContext.find((e) => e.number === identy);
 
     const handleAddToMyList = () => {
         if(addToListButton) {
-            setMyListWarriorsContext(myListWarriorsContext => [...myListWarriorsContext, number]);
+            setMyListWarriorsContext(myListWarriorsContext => [...myListWarriorsContext, identy]);
         }else{
-            setMyListWarriorsContext(myListWarriorsContext => myListWarriorsContext.filter(e => e !== number ));
+            setMyListWarriorsContext(myListWarriorsContext => myListWarriorsContext.filter(e => e !== identy ));
         }
         setButtonToggle(addToListButton => !addToListButton);
     };
@@ -42,7 +40,7 @@ export default function WarriorCard({ reserveButton, identy }) {
             <p>{description}</p>
             
             <Link
-                to={`/warrior_page/${identy}`} 
+                to={`/warrior_page/${number}`} 
             >
                 Wyświetl szczegóły
             </Link>

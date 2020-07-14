@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
@@ -9,11 +9,17 @@ export default function WarriorPage() {
 
     let { pathname } = useLocation();
     let { identy } = useParams();
-    const localstoragePosition = identy - 1;
     identy = parseInt(identy);
     const history = useHistory(); 
-    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
-    const {number, name, skill, description} = warriorsData[localstoragePosition] || JSON.parse(localStorage.getItem(localstoragePosition));
+    const position = parseInt(identy);
+    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+
+    console.log(myWarriorsListContext);
+    console.log(identy);
+    console.log(identy - 1);
+    console.log(JSON.parse(localStorage.getItem(identy - 1)));
+
+    const {number, name, skill, description} = myWarriorsListContext.find((e) => e.number === identy) || JSON.parse(localStorage.getItem(identy - 1));
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [reserveView, setReserveView] = useState(false);
 
@@ -27,9 +33,10 @@ export default function WarriorPage() {
 
     useEffect(() => {
         setLinksContext(pathname);
-    });
+    },[]);
 
-    return(
+    return useMemo(() => {
+        return (
         <div>
             {
                 reserveView && <Reserve toggleReserveView={setReserveView} identy={identy} />
@@ -51,5 +58,7 @@ export default function WarriorPage() {
                 onClick={handleReserve}
             >rezerwa</button>
         </div>
-    );
+    )},[reserveView]
+);
+
 }

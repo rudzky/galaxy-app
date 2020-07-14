@@ -11,7 +11,9 @@ export default function MyList() {
     const history = useHistory();
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
-    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
+    //const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
+    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+
     const [myWarriorsData, setMyWarriorsData] = useState([]);
 
     const goBackHandle = () => {
@@ -20,7 +22,7 @@ export default function MyList() {
     
     useEffect(() => {
         setLinksContext(pathname);
-        let filtredWarriors = warriorsData.filter((e,id) => {
+        let filtredWarriors = myWarriorsListContext.filter((e,id) => {
             if(myWarriorsList.includes(e.number)) return e;
         });
         setMyWarriorsData(filtredWarriors);

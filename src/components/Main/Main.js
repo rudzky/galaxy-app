@@ -9,7 +9,9 @@ export default function Main() {
     let { pathname } = useLocation();
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [dataExisting, setDataExisting] = useState(false);
-    const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
+    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+
+    console.log('MAIN - ALL', myWarriorsListContext);
 
     useEffect( () => {
         setLinksContext(pathname);
@@ -18,7 +20,7 @@ export default function Main() {
     return(
         <div>
             {
-                warriorsData.map(({number}) => <WarriorCard identy={number} key={number} />)
+                myWarriorsListContext.map(({number}, idx) => <WarriorCard identy={number} key={idx} />)
             }
         </div>
     );

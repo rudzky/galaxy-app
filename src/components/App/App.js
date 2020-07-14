@@ -14,8 +14,9 @@ export default function App() {
 
   const [linksContext, setLinksContext] = useState("/");
   const [allWarriorsData, setAllWarriorsData] = useState([]);
-  const [warriorsNumbers, setWarriorsNumbers] = useState([]);
+  //const [warriorsNumbers, setWarriorsNumbers] = useState([]);
   const [myWarriorsListContext, setMyWarriorsListContext] = useState([]);
+  //const allWarriorsContext = {}
 
   const APIAddress = "https://e3decdb6-2e8f-4c0b-9883-c1b7ce735dee.mock.pstmn.io/galaxy";
   const getWarriorsData = () => {
@@ -23,6 +24,7 @@ export default function App() {
       .get(APIAddress)
       .then(response => response.data)
       .then(({warriors}) => {
+        console.log(warriors);
         setAllWarriorsData(warriors);
           let warriors_numbers = [];
           warriors.forEach((warrior, index) => {
@@ -30,7 +32,7 @@ export default function App() {
             localStorage.setItem(index, warriorString);
             warriors_numbers.push(index);
           });
-        setWarriorsNumbers(warriors_numbers);
+        //setWarriorsNumbers(warriors_numbers);
           localStorage.setItem('warriorsNumbers', JSON.stringify(warriors_numbers));
           localStorage.setItem('expire', Date.now() + 259200000);
       });
@@ -38,7 +40,7 @@ export default function App() {
 
   useEffect( () => {
 
-    console.log(JSON.parse(localStorage.getItem('myWarriorsList')));
+    // console.log(JSON.parse(localStorage.getItem('myWarriorsList')));
 
     if(localStorage.getItem('expire') < Date.now() || localStorage.getItem('expire') === null ){
       getWarriorsData();
@@ -50,7 +52,7 @@ export default function App() {
         warriros_from_localstorage.push(JSON.parse(localStorage.getItem(e)));
       });
       setAllWarriorsData(warriros_from_localstorage);
-      setWarriorsNumbers(warriors_numbers);
+      //setWarriorsNumbers(warriors_numbers);
     };
 
     setMyWarriorsListContext(JSON.parse(localStorage.getItem('myWarriorsList')) || []);
@@ -62,10 +64,7 @@ export default function App() {
       <MenuContext.Provider value={[linksContext, setLinksContext]}>
         <MyWarriorsContext.Provider value={[myWarriorsListContext, setMyWarriorsListContext]}>
           <Menu />
-          <AllWarriorsContext.Provider value={{
-            warriorsData: allWarriorsData,
-            warriorsNumbers: warriorsNumbers
-          }}>
+          <AllWarriorsContext.Provider value={[allWarriorsData, setAllWarriorsData]}>
             <Switch>
               <Route path="/" exact component={Main} />
               <Route path="/add_warrior" component={WarriorAdd} />
