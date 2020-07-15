@@ -27,17 +27,21 @@ export const WarriorCardDescribe = styled.p`
     color: #FFFFFFCC;
 `;
 
-const WarriorButton = `
+export const WarriorButton = `
     color: #FFFFFF;
     border: 1px solid #FFFFFF;
     padding: 18px;
     text-decoration: none;
     font-size: 16px;
     width: 100%;
+    text-align: center;
 `;
 
 export const WarriorCardButtonLink = styled(Link)`
     ${WarriorButton};
+    margin-top: 10px;
+    background: #FFFFFF;
+    color: #000000;
 `;
 
 export const WarriorCardButton = styled.button`
@@ -45,7 +49,12 @@ export const WarriorCardButton = styled.button`
     background: ${props => props.back || 'transparent'};
     margin-top: 10px;
     border-color: ${props => props.status};
-`
+
+    &:disabled {
+        border-color: #FFFFFFAA;
+        color: #FFFFFFAA;
+    }
+`;
 
 export const WarriorCardOverflow = styled.div`
     display: flex;

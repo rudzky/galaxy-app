@@ -105,7 +105,7 @@ export default function WarriorSubPage({ show }) {
 
             <WarriorCardButton 
                 onClick={handleAddToMyList}
-                back={handleColorStatus}
+                // back={handleColorStatus}
                 status={handleColorStatus}
             >
                 {addToListButton ? 'Dodaj do' : 'Usuń z'} mojej listy

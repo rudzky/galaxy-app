@@ -31,3 +31,15 @@ a:active{
 button{
   outline: none;
 }
+
+/* input, textarea {
+  background: transparent;
+  border: 1px solid #FFE81F;
+  padding: 15px;
+  caret-color: rgba(255, 233, 31, 0.747);
+} */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FFFFFF;
+  opacity: 1; /* Firefox */
+}

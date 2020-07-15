@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
+import { ErrorContainer, ErrorCode, ErrorText, ErrorButton } from './NotFoundStyles';
 
 export default function NotFound() {
 
@@ -19,18 +20,25 @@ export default function NotFound() {
     }, [])
 
     return (
-        <section>
-            <h1>404</h1>
-            <button
+        <ErrorContainer>
+            <ErrorCode>Błąd 404</ErrorCode>
+            {/* <button
                 onClick={goBackHandle}
             >
                 Wróć
-            </button>
-            <Link
+            </button> */}
+
+            <ErrorText>
+                Mmm… Planetę mistrz Obi-Wan zgubił.
+                <br /> 
+                Co za wstyd, to ogromny wstyd…
+            </ErrorText>
+
+            <ErrorButton
                 to="/"
             >
                 Wróć w bezpieczne miejsce
-            </Link>
-        </section>
+            </ErrorButton>
+        </ErrorContainer>
     )
 }

@@ -2,6 +2,15 @@ import React, {useContext, useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
+import { 
+    ReserveContainer 
+} from './ReserveStyles';
+import { 
+    MainHeader 
+} from '../Main/MainStyles';
+import {
+    WarriorCardButton
+} from '../WarriorCard/WarriorCardStyles';
 // import { withTheme } from 'styled-components';
 
 export default function Reserve({ identy, hide }) {
@@ -48,24 +57,35 @@ export default function Reserve({ identy, hide }) {
     // };
 
     return(
-        <section style={style}>
-
+        <ReserveContainer>
 
             {
                 redirect && <Redirect to="/" />
             }
 
-            RESERVE
-            <button
+            <MainHeader>
+                Czy jesteś pewien swojej decyzji?
+            </MainHeader>
+
+            <div>
+                <WarriorCardButton
                 onClick={handleSendToReserve}
+                back={'#AE0909'}
+                status={'#AE0909'}
             >
                 Przenieś do rezerwy
-            </button>
-            <button
+            </WarriorCardButton>
+                <WarriorCardButton
                 onClick={hide}
+                status={'#FFFFFF'}
             >
                 Anuluj
-            </button>
-        </section>
+            </WarriorCardButton>
+            </div>
+            
+            <MainHeader>
+                Jeśli nie jesteś ze mną, stałeś się moim wrogiem.
+            </MainHeader>
+        </ReserveContainer>
     );
 }

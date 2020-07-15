@@ -3,6 +3,21 @@ import { Link, Redirect } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import { useMediaQuery } from 'react-responsive';
+import {
+    WarriorAddContainer,
+    WarriorAddForm,
+    WarriorAddInputs,
+    WarriorAddTextarea,
+    WarriorAddLink
+} from './WarriorAddStyles';
+import {
+    WarriorCardButtonLink,
+    WarriorCardButton
+} from '../WarriorCard/WarriorCardStyles';
+import { 
+    MainHeader
+} from '../Main/MainStyles';
 
 export default function WarriorAdd() {
 
@@ -110,6 +125,10 @@ export default function WarriorAdd() {
         setRedirect(true);
     };
 
+    const handleColorChange = (input) => {
+        return input ? '#2FF923' : '#AE0909';
+    };
+
     useEffect(() => {
         if(state.name && state.number && state.skill && state.description){
             setButtonDisabled(false);
@@ -122,39 +141,45 @@ export default function WarriorAdd() {
         setLinksContext(pathname);
     });
 
+    const isMobile = useMediaQuery({query: '(max-width: 767.98px)'});
+
     return(
-        <section>
+        <WarriorAddContainer>
             {
                 redirect && <Redirect to="/" />
             }
-            
-            <button
-                onClick={goBackHandle}
-            >
-                Wróć
-            </button>
-            Dodaj wojownika
 
-            <form onSubmit={addWarrior}>
-                <input type="number" name="number" onChange={updateNumber} placeholder="99"/>
-                <input type="text" name="name" value={name} onChange={updateName} maxLength="30"/>
-                <textarea name="skill" name="skill" rows="5" value={skill} onChange={updateSkill} maxLength="100"></textarea>
-                <textarea name="describe" name="describe" rows="8" value={describe} onChange={updateDescribe} maxLength="150"></textarea>
+            {
+                !isMobile && <button onClick={goBackHandle}>Wróć</button>
+            }
+
+            <WarriorAddForm onSubmit={addWarrior}>
+
+                <MainHeader>
+                    Dodaj wojownika
+                </MainHeader>
+                
+                <WarriorAddInputs type="number" name="number" onChange={updateNumber} placeholder="Numer" customWidth={'30%'} color={() => handleColorChange(state.number)} />
+                <WarriorAddInputs type="text" name="name" value={name} onChange={updateName} maxLength="30" placeholder="Nazwa" color={() => handleColorChange(state.name)} />
+                
+                <WarriorAddTextarea name="skill" name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={() => handleColorChange(state.skill)}></WarriorAddTextarea>
+                <WarriorAddTextarea name="describe" name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={() => handleColorChange(state.description)}></WarriorAddTextarea>
             
-                <button 
+                <WarriorCardButton 
                     type="submit"
                     disabled={buttonDisabled}
-                        //(state.name && state.number && state.skill && state.description) ? false : true}
+                    //(state.name && state.number && state.skill && state.description) ? false : true}
                 >
                     Dodaj
-                </button>
-                <Link
+                </WarriorCardButton>
+
+                <WarriorAddLink
                     to="/"
                 >
                     Anuluj
-                </Link>
+                </WarriorAddLink>
 
-            </form>
-        </section>
+            </WarriorAddForm>
+        </WarriorAddContainer>
     );
 }

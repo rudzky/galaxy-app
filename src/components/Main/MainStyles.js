@@ -32,10 +32,11 @@ export const MainHeader = styled.h1`
   text-align: center;
   letter-spacing: 0.9px;
   margin: 35px 0px;
+  color: ${props => props.color || '#FFFFFFEE'};
 `;
 
 export const MainHeaderSpan = styled.span`
-  -webkit-text-stroke: .1px #FFFFFFAA;
+  -webkit-text-stroke: .5px #a6f3ffbb;
   color: transparent;
 `;
 

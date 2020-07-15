@@ -4,6 +4,7 @@ import MenuContext from '../../contexts/MenuContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import WarriorCard from '../WarriorCard/WarriorCard';
+import { MainHeader, MainContainer } from '../Main/MainStyles';
 
 export default function MyList() {
 
@@ -29,19 +30,21 @@ export default function MyList() {
     },[myWarriorsList]);
 
     return(
-        <section>
-            Moja lista
-            <button
+        <MainContainer>
+            <MainHeader>
+                Moja lista
+            </MainHeader>
+            {/* <button
                 onClick={goBackHandle}
             >
                 Wróć
-            </button>
+            </button> */}
             {
                 myWarriorsData.map(({number}, idx) => <WarriorCard identy={number} key={number} />)
             }
             {
-                (myWarriorsList.length === 0) && <p>Lista jest pusta</p>
+                (myWarriorsList.length === 0) && <MainHeader color={'#AE0909'}>Lista jest pusta</MainHeader>
             }
-        </section>
+        </MainContainer>
     );
 }
