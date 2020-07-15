@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const size = {
+export const size = {
   mobileS: '320px',
   mobileM: '375px',
   mobileL: '425px',
@@ -33,7 +33,11 @@ export const MainHeader = styled.h1`
   letter-spacing: 0.9px;
   margin: 35px 0px;
   color: ${props => props.color || '#FFFFFFEE'};
-`;
+
+  @media ${device.tablet} {
+    font-size: 50px;
+  }
+  `;
 
 export const MainHeaderSpan = styled.span`
   -webkit-text-stroke: .5px #a6f3ffbb;

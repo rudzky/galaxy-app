@@ -14,7 +14,8 @@ import {
     MenuNavigationLogo, 
     MenuNavigationMobileList,
     MenuMobileLink,
-    MenuListItem 
+    MenuListItem,
+    MenuDesktopList
 } from './MenuStyles';
 
 export default function Menu() {
@@ -79,29 +80,29 @@ export default function Menu() {
                 {
                     !isMobile && (
     
-                        <ul>
-                            <Link to="/">
+                        <MenuDesktopList>
+                            <MenuMobileLink to="/">
                                 <MenuListItem
                                     hightlight={() => handleLinkChange("/")}
                                 >
                                     Strona główna
                                 </MenuListItem>
-                            </Link>
-                            <Link to="/add_warrior">
+                            </MenuMobileLink>
+                            <MenuMobileLink to="/add_warrior">
                                 <MenuListItem 
                                     hightlight={() => handleLinkChange("/add_warrior")}
                                 >
                                     Dodaj wojownika
                                 </MenuListItem>
-                            </Link>
-                            <Link to="/my_list">
+                            </MenuMobileLink>
+                            <MenuMobileLink to="/my_list">
                                 <MenuListItem
                                     hightlight={() => handleLinkChange("/my_list")}
                                 >
                                     Moja lista({warriorsCount})
                                 </MenuListItem>
-                            </Link>
-                        </ul>
+                            </MenuMobileLink>
+                        </MenuDesktopList>
                     )
                 }
             </MenuNavigation>

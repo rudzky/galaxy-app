@@ -28,6 +28,11 @@ export const MenuListItem = styled.li`
     font-size: 26px;
     font-weight: 500;
     letter-spacing: 0.9px;
+
+    @media ${device.tablet} {
+      font-size: 20px;
+      margin-left: 20px;
+    }
 `;
 
 export const MenuHeader = styled.header`
@@ -76,3 +81,11 @@ export const MenuNavigationMobileList = styled.ul`
 export const MenuMobileLink = styled(Link)`
     text-decoration: none;
 `;
+
+export const MenuDesktopList = styled.ul`
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: inline-flex;
+`;
+

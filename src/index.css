@@ -13,6 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #000;
   background: url('/assets/background.jpg');
+  background-attachment: fixed;
   color: #FFFFFF;
 }
 
