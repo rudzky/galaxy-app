@@ -2,6 +2,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import { 
+    WarriorCardSection, 
+    WarriorCardNameNumber, 
+    WarriorCardSkill,
+    WarriorCardButtonLink,
+    WarriorCardButton,
+    WarriorCardOverflow,
+    WarriorCardDescription
+} from './WarriorCardStyles';
 
 export default function WarriorCard({ identy }) {
 
@@ -19,6 +28,10 @@ export default function WarriorCard({ identy }) {
         setButtonToggle(addToListButton => !addToListButton);
     };
 
+    const handleColorStatus = () => {
+        return (addToListButton ? '#069FB8' : '#AE0909');
+    };
+
     useEffect(() => {
         if(JSON.parse(localStorage.getItem('myWarriorsList')) !== myListWarriorsContext){
             localStorage.setItem('myWarriorsList', JSON.stringify(myListWarriorsContext));
@@ -32,26 +45,33 @@ export default function WarriorCard({ identy }) {
     },[]);
 
     return(
-        <div>
-            <h1>#{number}</h1>
+        <WarriorCardSection>
+            <WarriorCardNameNumber>#{number}</WarriorCardNameNumber>
             {/* <img src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} alt=""/> */}
             {/* <img src={`http://source.unsplash.com/random/50x50?jedi`} alt=""/> */}
-            <h2>{name}</h2>
-            <h3>{skill}</h3>
-            <p>{description}</p>
+            <WarriorCardNameNumber>{name}</WarriorCardNameNumber>
+            <WarriorCardSkill>Skill: {skill}</WarriorCardSkill>
             
-            <Link
+            <WarriorCardOverflow>
+                <WarriorCardDescription>
+                    {description}
+                </WarriorCardDescription> 
+            </WarriorCardOverflow>
+            
+            
+            <WarriorCardButtonLink
                 to={`/warrior_page/${number}`} 
             >
                 Wyświetl szczegóły
-            </Link>
+            </WarriorCardButtonLink>
             
-            <button 
+            <WarriorCardButton 
+                status={handleColorStatus}
                 onClick={handleAddToMyList}
             >
-                {addToListButton ? 'dodaj do' : 'usuń z'} mojej listy
-            </button>
+                {addToListButton ? 'Dodaj do' : 'Usuń z'} mojej listy
+            </WarriorCardButton>
 
-        </div>
+        </WarriorCardSection>
     );
 }

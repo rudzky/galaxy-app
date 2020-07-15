@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Staatliches&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #000;
+  background: url('/assets/background.jpg');
+  color: #FFFFFF;
 }
 
 code {
@@ -14,4 +23,11 @@ code {
 
 textarea {
   resize: none;
+}
+
+a:active{
+  outline: none;
+}
+button{
+  outline: none;
 }

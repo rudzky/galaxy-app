@@ -48,7 +48,7 @@ export default function Reserve({ identy, hide }) {
     // };
 
     return(
-        <div style={style}>
+        <section style={style}>
 
 
             {
@@ -66,6 +66,6 @@ export default function Reserve({ identy, hide }) {
             >
                 Anuluj
             </button>
-        </div>
+        </section>
     );
 }

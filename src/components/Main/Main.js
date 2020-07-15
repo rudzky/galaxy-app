@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import WarriorCard from '../WarriorCard/WarriorCard';
+import { MainContainer, MainHeader, MainHeaderSpan } from './MainStyles';
 
 export default function Main() {
 
@@ -16,10 +17,17 @@ export default function Main() {
     },[]);
 
     return(
-        <div>
-            {
-                myWarriorsListContext.map(({number}) => <WarriorCard identy={number} key={number} />)
-            }
-        </div>
+        <main>
+            <MainHeader>
+                (nie tak) dawno temu
+                <br/>
+                <MainHeaderSpan>w odległej galaktyce</MainHeaderSpan>
+            </MainHeader>
+            <MainContainer>
+                {
+                    myWarriorsListContext.map(({number}) => <WarriorCard identy={number} key={number} />)
+                }
+            </MainContainer>
+        </main>
     );
 }

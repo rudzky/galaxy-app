@@ -1,26 +1,42 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import MenuContext from '../../contexts/MenuContext';
-import { LI } from './MenuStyles';
+// import { LI } from './MenuStyles';
 import logo from '../../assets/logo.svg';
 import HamburgerMenu from 'react-hamburger-menu';
 import MobileMenu from './MobileMenu';
+import { 
+    MenuHeader, 
+    MenuNavigation, 
+    MenuNavigationLogo, 
+    MenuNavigationMobileList,
+    MenuMobileLink,
+    MenuListItem 
+} from './MenuStyles';
 
 export default function Menu() {
+
+    const history = useHistory();
 
     const [warriorsCount, setWarriorsCount] = useState(0);
     const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const goBackHandle = () => {
+        history.goBack();
+        setMenuOpen(false);
+    };
+
     useEffect(() => {
         setWarriorsCount(myWarriorsList.length);
     },[myWarriorsList]);
 
     const handleLinkChange = (page) => {
-        return (linksContext === page ? 'green' : ''); 
+        return (linksContext === page ? '#FFE81F' : '#FFFFFF'); 
     }
 
     const toggleMenu = () => {
@@ -40,71 +56,89 @@ export default function Menu() {
     const isMobile = useMediaQuery({query: '(max-width: 767.98px)'});
     
     return(
-        <nav>
-            <img src={logo} alt="logo"/>
-            {
-                isMobile && (
-                <HamburgerMenu 
-                    isOpen={menuOpen}
-                    menuClicked={toggleMenu}
-                />)
-            }
-            {
-                isMobile 
-                ? (
-                    menuOpen 
-                    && (<MobileMenu>
-                            <ul>
+        <MenuHeader>
+            <MenuNavigation>
+                {(linksContext === "/") ? 
+                    (<MenuNavigationLogo src={logo} alt="logo"/>) :
+                    (isMobile ?
+                        <p onClick={goBackHandle}>Back</p> :
+                        <MenuNavigationLogo src={logo} alt="logo"/>
+                    )
+                }
+                
+                {
+                    isMobile && (
+                    <HamburgerMenu 
+                        isOpen={menuOpen}
+                        menuClicked={toggleMenu}
+                        color='#FFFFFF'
+                        width={26}
+                        height={20}
+                    />)
+                }
+                {
+                    !isMobile && (
+    
+                        <ul>
                             <Link to="/">
-                                <LI
+                                <MenuListItem
                                     hightlight={() => handleLinkChange("/")}
                                 >
                                     Strona główna
-                                </LI>
+                                </MenuListItem>
                             </Link>
                             <Link to="/add_warrior">
-                                <LI 
+                                <MenuListItem 
                                     hightlight={() => handleLinkChange("/add_warrior")}
                                 >
                                     Dodaj wojownika
-                                </LI>
+                                </MenuListItem>
                             </Link>
                             <Link to="/my_list">
-                                <LI 
+                                <MenuListItem
                                     hightlight={() => handleLinkChange("/my_list")}
                                 >
                                     Moja lista({warriorsCount})
-                                </LI>
+                                </MenuListItem>
                             </Link>
                         </ul>
-                    </MobileMenu> )
-                    
-                ) : (
-                    <ul>
-                        <Link to="/">
-                            <LI
-                                hightlight={() => handleLinkChange("/")}
-                            >
-                                Strona główna
-                            </LI>
-                        </Link>
-                        <Link to="/add_warrior">
-                            <LI 
-                                hightlight={() => handleLinkChange("/add_warrior")}
-                            >
-                                Dodaj wojownika
-                            </LI>
-                        </Link>
-                        <Link to="/my_list">
-                            <LI 
-                                hightlight={() => handleLinkChange("/my_list")}
-                            >
-                                Moja lista({warriorsCount})
-                            </LI>
-                        </Link>
-                    </ul>
-                )
-            }
-        </nav>
+                    )
+                }
+            </MenuNavigation>
+                {
+                    isMobile && (
+                        menuOpen && (
+                        <MobileMenu>
+                            <MenuNavigationMobileList>
+                                <MenuMobileLink to="/">
+                                    <MenuListItem
+                                        hightlight={() => handleLinkChange("/")}
+                                        onClick={toggleMenu}
+                                    >
+                                        Strona główna
+                                    </MenuListItem>
+                                </MenuMobileLink>
+                                <MenuMobileLink to="/add_warrior">
+                                    <MenuListItem 
+                                        hightlight={() => handleLinkChange("/add_warrior")}
+                                        onClick={toggleMenu}
+                                    >
+                                        Dodaj wojownika
+                                    </MenuListItem>
+                                </MenuMobileLink>
+                                <MenuMobileLink to="/my_list">
+                                    <MenuListItem
+                                        hightlight={() => handleLinkChange("/my_list")}
+                                        onClick={toggleMenu}
+                                    >
+                                        Moja lista({warriorsCount})
+                                    </MenuListItem>
+                                </MenuMobileLink>
+                            </MenuNavigationMobileList>
+                        </MobileMenu> )
+                        
+                    )
+                }
+        </MenuHeader>
     )        
 };

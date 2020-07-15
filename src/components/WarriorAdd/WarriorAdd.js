@@ -123,7 +123,7 @@ export default function WarriorAdd() {
     });
 
     return(
-        <div>
+        <section>
             {
                 redirect && <Redirect to="/" />
             }
@@ -155,6 +155,6 @@ export default function WarriorAdd() {
                 </Link>
 
             </form>
-        </div>
+        </section>
     );
 }

@@ -19,7 +19,7 @@ export default function NotFound() {
     }, [])
 
     return (
-        <div>
+        <section>
             <h1>404</h1>
             <button
                 onClick={goBackHandle}
@@ -31,6 +31,6 @@ export default function NotFound() {
             >
                 Wróć w bezpieczne miejsce
             </Link>
-        </div>
+        </section>
     )
 }

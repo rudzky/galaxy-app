@@ -29,7 +29,7 @@ export default function MyList() {
     },[myWarriorsList]);
 
     return(
-        <div>
+        <section>
             Moja lista
             <button
                 onClick={goBackHandle}
@@ -42,6 +42,6 @@ export default function MyList() {
             {
                 (myWarriorsList.length === 0) && <p>Lista jest pusta</p>
             }
-        </div>
+        </section>
     );
 }
