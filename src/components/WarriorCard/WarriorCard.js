@@ -11,6 +11,8 @@ import {
     WarriorCardOverflow,
     WarriorCardDescription
 } from './WarriorCardStyles';
+import Truncate from 'react-truncate';
+
 
 export default function WarriorCard({ identy }) {
 
@@ -52,11 +54,18 @@ export default function WarriorCard({ identy }) {
             <WarriorCardNameNumber>{name}</WarriorCardNameNumber>
             <WarriorCardSkill>Skill: {skill}</WarriorCardSkill>
             
-            <WarriorCardOverflow>
+            {/* <WarriorCardOverflow>
                 <WarriorCardDescription>
                     {description}
                 </WarriorCardDescription> 
+            </WarriorCardOverflow> */}
+
+            <WarriorCardOverflow>
+                <Truncate lines={3} ellipsis={'...'}>
+                    {description}
+                </Truncate>
             </WarriorCardOverflow>
+            
             
             
             <WarriorCardButtonLink

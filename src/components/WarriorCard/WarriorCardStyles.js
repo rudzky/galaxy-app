@@ -76,12 +76,14 @@ export const WarriorCardButton = styled.button`
 
 export const WarriorCardOverflow = styled.div`
     display: flex;
+    justify-content: center;
     width: 90%;
+    margin: 20px 0px;
+    font-family: Roboto;
+    font-size: 16px;
 
-    &::after {
-        content: '...';
-        align-self: flex-end;
-        margin-bottom: 18px;
+    @media ${device.tablet} {
+        font-size: 20px;
     }
 `;
 
