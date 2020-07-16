@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import { Image } from 'react-image-and-background-image-fade';
 import { 
     WarriorSubPageContainer,
     WarriorSubPageDescriptWrapper,
@@ -13,7 +14,8 @@ import {
     WarriorCardNameNumber,
     WarriorCardSkill,
     WarriorCardButton,
-    WarriorButtonWrapper
+    WarriorButtonWrapper,
+    WarriorCardImageWrapper
 } from '../WarriorCard/WarriorCardStyles';
 
 export default function WarriorSubPage({ show }) {
@@ -46,7 +48,6 @@ export default function WarriorSubPage({ show }) {
     };
 
     useEffect(() => {
-        console.log('hehehe');
         if(JSON.parse(localStorage.getItem('myWarriorsList')) !== myListWarriorsContext){
             localStorage.setItem('myWarriorsList', JSON.stringify(myListWarriorsContext));
         } 
@@ -75,6 +76,17 @@ export default function WarriorSubPage({ show }) {
             } */}
             
             <WarriorSubPageInfoWrapper>
+
+                <WarriorCardImageWrapper>
+                    <Image 
+                        src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`}
+                        width='100%'
+                        height='100%'
+                        isResponsive 
+                        lazyLoad 
+                        style={{marginBottom: '10px'}}
+                    />
+                </WarriorCardImageWrapper>
 
                 <WarriorCardNameNumber>
                     {name} 

@@ -43,7 +43,6 @@ export default function App() {
           localStorage.setItem('expire', Date.now() + 259200000);
       })
       .catch((error) => {
-        console.log('errorek');
         setShowErrorPage(true);
       });
   }; 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
+import { Image } from 'react-image-and-background-image-fade';
 import { 
     WarriorCardSection, 
     WarriorCardNameNumber, 
@@ -10,7 +11,9 @@ import {
     WarriorCardButton,
     WarriorCardOverflow,
     WarriorCardDescription,
-    WarriorButtonWrapper
+    WarriorButtonWrapper,
+    WarriorCardImage,
+    WarriorCardImageWrapper
 } from './WarriorCardStyles';
 import Truncate from 'react-truncate';
 
@@ -21,6 +24,7 @@ export default function WarriorCard({ identy }) {
     const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
     const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
     const {number, name, skill, description} = myWarriorsListContext.find((e) => e.number === identy);
+    const imageLink = `http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`;
 
     const handleAddToMyList = () => {
         if(addToListButton) {
@@ -52,6 +56,23 @@ export default function WarriorCard({ identy }) {
             <WarriorCardNameNumber>#{number}</WarriorCardNameNumber>
             {/* <img src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} alt=""/> */}
             {/* <img src={`http://source.unsplash.com/random/50x50?jedi`} alt=""/> */}
+
+            {/* <WarriorCardImageWrapper 
+                src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`}
+            /> */}
+                {/* <WarriorCardImage src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} /> */}
+
+            {/* <WarriorCardImageWrapper> */}
+                <Image 
+                    src={imageLink}
+                    style={{ backgroundSize: 'cover',backgroundPosition: 'center top' }} 
+                    width='100%'
+                    height='100%'
+                    isResponsive 
+                    lazyLoad 
+                />
+            {/* </WarriorCardImageWrapper> */}
+            
             <WarriorCardNameNumber>{name}</WarriorCardNameNumber>
 
             <WarriorCardOverflow fs={'20px'} fc={'#FFE81F'}>

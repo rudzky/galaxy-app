@@ -113,3 +113,12 @@ export const WarriorButtonWrapper = styled.div`
         margin: 10px 0px;
     }
 `;
+
+export const WarriorCardImage = styled.img`
+    width: 100px;
+`;
+
+export const WarriorCardImageWrapper = styled.div`
+    width: 200px;
+    height: 200px;
+`;

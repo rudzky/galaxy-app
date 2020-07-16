@@ -159,11 +159,11 @@ export default function WarriorAdd() {
                     Dodaj wojownika
                 </MainHeader>
                 
-                <WarriorAddInputs type="number" name="number" onChange={updateNumber} placeholder="Numer" customWidth={'30%'} color={() => handleColorChange(state.number)} />
-                <WarriorAddInputs type="text" name="name" value={name} onChange={updateName} maxLength="30" placeholder="Nazwa" color={() => handleColorChange(state.name)} />
+                <WarriorAddInputs type="number" name="number" onChange={updateNumber} placeholder="Numer" customWidth={'30%'} color={handleColorChange(state.number)} />
+                <WarriorAddInputs type="text" name="name" value={name} onChange={updateName} maxLength="30" placeholder="Nazwa" color={handleColorChange(state.name)} />
                 
-                <WarriorAddTextarea name="skill" name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={() => handleColorChange(state.skill)}></WarriorAddTextarea>
-                <WarriorAddTextarea name="describe" name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={() => handleColorChange(state.description)}></WarriorAddTextarea>
+                <WarriorAddTextarea name="skill" name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={handleColorChange(state.skill)}></WarriorAddTextarea>
+                <WarriorAddTextarea name="describe" name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={handleColorChange(state.description)}></WarriorAddTextarea>
             
                 <WarriorCardButton 
                     type="submit"

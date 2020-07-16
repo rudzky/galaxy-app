@@ -20,6 +20,10 @@ export const WarriorSubPageInfoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    & > h1 {
+        margin: 10px 0px;
+    }
 `;
 
 export const WarriorSubPageParagraph = styled.p`
