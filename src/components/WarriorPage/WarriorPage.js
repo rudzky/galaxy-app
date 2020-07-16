@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useMemo } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
@@ -12,14 +12,13 @@ export default function WarriorPage() {
     let { identy } = useParams();
     identy = parseInt(identy);
 
-    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+    const [myWarriorsListContext] = useContext(AllWarriorsContext);
 
-    const [linksContext, setLinksContext] = useContext(MenuContext);
+    const [, setLinksContext] = useContext(MenuContext);
 
     const [reserveView, setReserveView] = useState(false);
     const [subpageView, setSubpageView] = useState(false);
     const [loadingView, setLoadingView] = useState(true);
-    const [notFoundView, setNotFoundView] = useState(false);
 
     const showReserve = () => {
         setSubpageView(false);
@@ -36,7 +35,6 @@ export default function WarriorPage() {
             setSubpageView(true);
         }else{
             setLoadingView(false);
-            setNotFoundView(true);
         }
         setLinksContext(pathname);
     },[]);

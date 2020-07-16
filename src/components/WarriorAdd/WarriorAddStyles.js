@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { size, device } from '../Main/MainStyles';
+import { device } from '../Main/MainStyles';
 
 export const WarriorAddContainer = styled.section`
     min-height: 87vh;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { size, device } from '../Main/MainStyles';
+import { device } from '../Main/MainStyles';
 import { Link } from 'react-router-dom';
 
 export const WarriorCardSection = styled.section`
@@ -47,14 +47,6 @@ export const WarriorCardSkill = styled.p`
 
 `;
 
-// export const WarriorCardDescribe = styled.p`
-//     font-size: 18px;
-//     color: #FFFFFFCC;
-
-//     @media ${device.tablet} {
-//         font-size: 24px;
-//     }
-// `;
 
 export const WarriorButton = `
     color: #FFFFFF;

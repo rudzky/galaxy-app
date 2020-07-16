@@ -22,8 +22,8 @@ export default function Menu() {
     const history = useHistory();
 
     const [warriorsCount, setWarriorsCount] = useState(0);
-    const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
-    const [linksContext, setLinksContext] = useContext(MenuContext);
+    const [myWarriorsList] = useContext(MyWarriorsContext);
+    const [linksContext] = useContext(MenuContext);
     const [menuOpen, setMenuOpen] = useState(false);
 
     const goBackHandle = () => {

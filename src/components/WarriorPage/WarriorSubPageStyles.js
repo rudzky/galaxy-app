@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { WarriorButton, WarriorButtonTemplate } from '../WarriorCard/WarriorCardStyles';
-import { size, device } from '../Main/MainStyles';
+import { device } from '../Main/MainStyles';
 
 export const WarriorSubPageContainer = styled.section`
     min-height: 87vh;

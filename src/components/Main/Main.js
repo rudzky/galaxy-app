@@ -8,12 +8,12 @@ import { MainContainer, MainHeader, MainHeaderSpan } from './MainStyles';
 export default function Main() {
 
     let { pathname } = useLocation();
-    const [linksContext, setLinksContext] = useContext(MenuContext);
-    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+    const [,setLinksContext] = useContext(MenuContext);
+    const [myWarriorsListContext] = useContext(AllWarriorsContext);
 
     useEffect( () => {
         setLinksContext(pathname);
-    },[]);
+    });
 
     return(
         <main>

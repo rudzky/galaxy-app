@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import MenuContext from '../../contexts/MenuContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
@@ -9,16 +9,11 @@ import { MainHeader, MainContainer } from '../Main/MainStyles';
 export default function MyList() {
 
     let { pathname } = useLocation();
-    const history = useHistory();
-    const [linksContext, setLinksContext] = useContext(MenuContext);
-    const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
-    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+    const [, setLinksContext] = useContext(MenuContext);
+    const [myWarriorsList] = useContext(MyWarriorsContext);
+    const [myWarriorsListContext] = useContext(AllWarriorsContext);
 
     const [myWarriorsData, setMyWarriorsData] = useState([]);
-
-    const goBackHandle = () => {
-        history.goBack();
-    };
     
     useEffect(() => {
         setLinksContext(pathname);

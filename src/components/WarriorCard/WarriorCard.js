@@ -16,7 +16,7 @@ import Truncate from 'react-truncate';
 export default function WarriorCard({ identy }) {
 
     const [addToListButton, setButtonToggle] = useState(true);
-    const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
+    const [myWarriorsListContext] = useContext(AllWarriorsContext);
     const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
     const {number, name, skill, description} = myWarriorsListContext.find((e) => e.number === identy);
 
@@ -43,7 +43,7 @@ export default function WarriorCard({ identy }) {
         if(myListWarriorsContext.includes(identy)){
             setButtonToggle(false);
         }
-    },[]);
+    });
 
     return(
         <WarriorCardSection>

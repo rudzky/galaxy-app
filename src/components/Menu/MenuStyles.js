@@ -21,8 +21,6 @@ export const device = {
   desktopL: `(min-width: ${size.desktop})`
 };
 
-// const starYellow = '#FFE81F';
-
 export const MenuListItem = styled.li`
     color: ${props => props.hightlight};
     font-size: 26px;

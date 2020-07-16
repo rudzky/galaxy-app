@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { WarriorButton } from '../WarriorCard/WarriorCardStyles';
-import { size, device } from '../Main/MainStyles';
+import { device } from '../Main/MainStyles';
 
 export const ErrorContainer = styled.section`
     height: 87vh;

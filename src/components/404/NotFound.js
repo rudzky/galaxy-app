@@ -13,11 +13,11 @@ export default function NotFound() {
 
     let { pathname } = useLocation();
 
-    const [linksContext, setLinksContext] = useContext(MenuContext);
+    const [, setLinksContext] = useContext(MenuContext);
 
     useEffect(() => {
         setLinksContext(pathname);
-    }, [])
+    });
 
     return (
         <ErrorContainer>

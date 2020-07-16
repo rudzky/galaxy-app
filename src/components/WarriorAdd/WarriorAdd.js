@@ -29,7 +29,7 @@ export default function WarriorAdd() {
         description: false,
     };
 
-    const [linksContext, setLinksContext] = useContext(MenuContext);
+    const [, setLinksContext] = useContext(MenuContext);
     const [allWarriorsContext, setAllWarriorsContext] = useContext(AllWarriorsContext);
 
     const [number, setNumber] = useState();
@@ -58,6 +58,8 @@ export default function WarriorAdd() {
                 return {...state, description: true};
             case 'description-false':
                 return {...state, description: false};
+            default: 
+                return state;
         }
     };
 
@@ -150,8 +152,8 @@ export default function WarriorAdd() {
                 <WarriorAddInputs type="number" name="number" onChange={updateNumber} placeholder="Numer" customWidth={'30%'} color={handleColorChange(state.number)} />
                 <WarriorAddInputs type="text" name="name" value={name} onChange={updateName} maxLength="30" placeholder="Nazwa" color={handleColorChange(state.name)} />
                 
-                <WarriorAddTextarea name="skill" name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={handleColorChange(state.skill)}></WarriorAddTextarea>
-                <WarriorAddTextarea name="describe" name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={handleColorChange(state.description)}></WarriorAddTextarea>
+                <WarriorAddTextarea  name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={handleColorChange(state.skill)}></WarriorAddTextarea>
+                <WarriorAddTextarea name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={handleColorChange(state.description)}></WarriorAddTextarea>
             
                 <WarriorAddButtonWrapper>
                     <WarriorCardButton 

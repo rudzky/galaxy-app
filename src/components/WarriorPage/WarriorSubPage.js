@@ -24,7 +24,7 @@ export default function WarriorSubPage({ show }) {
 
     const [addToListButton, setButtonToggle] = useState(true);
 
-    const [AllWarriors, setAllWarriors] = useContext(AllWarriorsContext);
+    const [AllWarriors] = useContext(AllWarriorsContext);
     const [myListWarriorsContext, setMyListWarriorsContext] = useContext(MyWarriorsContext);
     const { number, name, skill, description } = AllWarriors.find(e => e.number === identy);
 
@@ -42,16 +42,16 @@ export default function WarriorSubPage({ show }) {
     };
 
     useEffect(() => {
+        if(myListWarriorsContext.includes(identy)){
+            setButtonToggle(false);
+        }
+    });
+
+    useEffect(() => {
         if(JSON.parse(localStorage.getItem('myWarriorsList')) !== myListWarriorsContext){
             localStorage.setItem('myWarriorsList', JSON.stringify(myListWarriorsContext));
         } 
     },[addToListButton]);
-
-    useEffect(() => {
-        if(myListWarriorsContext.includes(identy)){
-            setButtonToggle(false);
-        }
-    },[]);
 
     return (
         <WarriorSubPageContainer>

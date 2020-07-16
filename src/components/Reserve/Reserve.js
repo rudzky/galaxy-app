@@ -15,14 +15,12 @@ import {
 
 export default function Reserve({ identy, hide }) {
 
-    const [reserveWarriorsListContext, setReserveMyWarriorsListContext] = useContext(AllWarriorsContext);
+    const [, setReserveMyWarriorsListContext] = useContext(AllWarriorsContext);
     const [reserveWarriorsNumbers, setReserveWarriorsNumbers] = useContext(MyWarriorsContext);
 
     const [redirect, setRedirect] = useState(false);
 
     const handleSendToReserve = () => {
-
-        console.log('rezerwa');
 
         setReserveWarriorsNumbers(reserveWarriorsNumbers => reserveWarriorsNumbers.filter(e => e!==identy));
         localStorage.removeItem(identy);
