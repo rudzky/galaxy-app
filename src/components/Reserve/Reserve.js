@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import { 
@@ -12,24 +12,13 @@ import {
 import {
     WarriorCardButton
 } from '../WarriorCard/WarriorCardStyles';
-// import { withTheme } from 'styled-components';
 
 export default function Reserve({ identy, hide }) {
-
-    //const localstoragePosition = identy;
 
     const [reserveWarriorsListContext, setReserveMyWarriorsListContext] = useContext(AllWarriorsContext);
     const [reserveWarriorsNumbers, setReserveWarriorsNumbers] = useContext(MyWarriorsContext);
 
     const [redirect, setRedirect] = useState(false);
-
-    const style = {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        background: 'rgba(255, 0, 0, .5)',
-        color: 'white'  
-    };
 
     const handleSendToReserve = () => {
 
@@ -52,10 +41,6 @@ export default function Reserve({ identy, hide }) {
         }
         setRedirect(true);
     };
-
-    // const handleTabClose = () => {
-    //     hide(false);
-    // };
 
     return(
         <ReserveContainer>

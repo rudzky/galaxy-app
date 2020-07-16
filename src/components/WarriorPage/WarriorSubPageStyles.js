@@ -64,6 +64,7 @@ export const WarriorSubPageButton = styled.button`
 
     &:hover {
         cursor: pointer;
+        color: ${props => props.status};
     }
 `;
 

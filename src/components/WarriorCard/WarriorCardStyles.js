@@ -106,10 +106,20 @@ export const WarriorCardButton = styled.button`
             border-color: #FFFFFFAA;
             background: #FFFFFF;
             color: #000000;
+
+            &:hover{ 
+                color: #069FB8;
+                border-color: #069FB8;
+            }
         }
         &:disabled {
             border-color: #FFFFFFAA;
             color: #FFFFFFAA;
+
+            &:hover{ 
+                color: #AE0909;
+                border-color: #AE0909;
+            }
         }
     }
 

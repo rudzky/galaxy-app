@@ -31,10 +31,6 @@ export default function Menu() {
         setMenuOpen(false);
     };
 
-    useEffect(() => {
-        setWarriorsCount(myWarriorsList.length);
-    },[myWarriorsList]);
-
     const handleLinkChange = (page) => {
         return (linksContext === page ? '#FFE81F' : '#FFFFFF'); 
     }
@@ -43,15 +39,9 @@ export default function Menu() {
         setMenuOpen(menuOpen => !menuOpen);
     }
 
-    const size = {
-        mobileS: '320px',
-        mobileM: '375px',
-        mobileL: '425px',
-        tablet: '768px',
-        laptop: '1024px',
-        laptopL: '1440px',
-        desktop: '2560px'
-    };
+    useEffect(() => {
+        setWarriorsCount(myWarriorsList.length);
+    },[myWarriorsList]);
 
     const isMobile = useMediaQuery({query: '(max-width: 767.98px)'});
     

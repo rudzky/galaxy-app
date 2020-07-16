@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState, useReducer } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { useHistory, useLocation } from 'react-router';
+import { Redirect } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
-import { useMediaQuery } from 'react-responsive';
 import {
     WarriorAddContainer,
     WarriorAddForm,
@@ -13,7 +12,6 @@ import {
     WarriorAddButtonWrapper
 } from './WarriorAddStyles';
 import {
-    WarriorCardButtonLink,
     WarriorCardButton
 } from '../WarriorCard/WarriorCardStyles';
 import { 
@@ -31,7 +29,6 @@ export default function WarriorAdd() {
         description: false,
     };
 
-    const history = useHistory();
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [allWarriorsContext, setAllWarriorsContext] = useContext(AllWarriorsContext);
 
@@ -65,10 +62,6 @@ export default function WarriorAdd() {
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    
-    const goBackHandle = () => {
-        history.goBack();
-    };
 
     const updateName = (e) => {
         setName(e.target.value);
@@ -142,17 +135,11 @@ export default function WarriorAdd() {
         setLinksContext(pathname);
     });
 
-    const isMobile = useMediaQuery({query: '(max-width: 767.98px)'});
-
     return(
         <WarriorAddContainer>
             {
                 redirect && <Redirect to="/" />
             }
-
-            {/* {
-                !isMobile && <button onClick={goBackHandle}>Wróć</button>
-            } */}
 
             <WarriorAddForm onSubmit={addWarrior}>
 
@@ -174,9 +161,6 @@ export default function WarriorAdd() {
                         Dodaj
                     </WarriorCardButton>
                 </WarriorAddButtonWrapper>
-                
-                    {/* Dodaj
-                </WarriorCardButton> */}
 
                 <WarriorAddLink
                     to="/"

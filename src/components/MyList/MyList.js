@@ -12,7 +12,6 @@ export default function MyList() {
     const history = useHistory();
     const [linksContext, setLinksContext] = useContext(MenuContext);
     const [myWarriorsList, setMyWarriorsList] = useContext(MyWarriorsContext);
-    //const { warriorsData, warriorsNumbers } = useContext(AllWarriorsContext);
     const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
 
     const [myWarriorsData, setMyWarriorsData] = useState([]);
@@ -31,20 +30,19 @@ export default function MyList() {
 
     return(
         <MainContainer>
+            
             <MainHeader>
                 Moja lista
             </MainHeader>
-            {/* <button
-                onClick={goBackHandle}
-            >
-                Wróć
-            </button> */}
+
             {
                 myWarriorsData.map(({number}, idx) => <WarriorCard identy={number} key={number} />)
             }
+
             {
                 (myWarriorsList.length === 0) && <MainHeader color={'#AE0909'}>Lista jest pusta</MainHeader>
             }
+
         </MainContainer>
     );
 }
