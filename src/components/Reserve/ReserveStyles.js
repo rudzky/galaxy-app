@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../Main/MainStyles';
 
 export const ReserveContainer = styled.section`
     display: flex;
@@ -17,4 +18,8 @@ export const ReserveButtonWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     align-items: center;
+
+    @media ${device.laptop} {
+        width: 30%;
+    }
 `;

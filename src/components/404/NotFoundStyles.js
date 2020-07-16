@@ -52,4 +52,8 @@ export const ErrorButtonWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+
+    @media ${device.laptop} {
+        width: 50%;
+    }
 `;

@@ -9,7 +9,8 @@ import {
     WarriorAddForm,
     WarriorAddInputs,
     WarriorAddTextarea,
-    WarriorAddLink
+    WarriorAddLink,
+    WarriorAddButtonWrapper
 } from './WarriorAddStyles';
 import {
     WarriorCardButtonLink,
@@ -165,13 +166,17 @@ export default function WarriorAdd() {
                 <WarriorAddTextarea name="skill" name="skill" value={skill} onChange={updateSkill} maxLength="100" placeholder="Skill" color={handleColorChange(state.skill)}></WarriorAddTextarea>
                 <WarriorAddTextarea name="describe" name="describe" value={describe} onChange={updateDescribe} maxLength="150" placeholder="Opis" color={handleColorChange(state.description)}></WarriorAddTextarea>
             
-                <WarriorCardButton 
-                    type="submit"
-                    disabled={buttonDisabled}
-                    //(state.name && state.number && state.skill && state.description) ? false : true}
-                >
-                    Dodaj
-                </WarriorCardButton>
+                <WarriorAddButtonWrapper>
+                    <WarriorCardButton 
+                        type="submit"
+                        disabled={buttonDisabled}
+                    >
+                        Dodaj
+                    </WarriorCardButton>
+                </WarriorAddButtonWrapper>
+                
+                    {/* Dodaj
+                </WarriorCardButton> */}
 
                 <WarriorAddLink
                     to="/"

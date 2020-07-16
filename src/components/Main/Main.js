@@ -9,7 +9,6 @@ export default function Main() {
 
     let { pathname } = useLocation();
     const [linksContext, setLinksContext] = useContext(MenuContext);
-    const [dataExisting, setDataExisting] = useState(false);
     const [myWarriorsListContext, setMyWarriorsListContext] = useContext(AllWarriorsContext);
 
     useEffect( () => {

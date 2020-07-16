@@ -12,13 +12,18 @@ export const WarriorCardSection = styled.section`
     margin-bottom: 20px;
 
     @media ${device.laptop} {
-        flex-basis: 48%;
+        flex-basis: 30%;
+        max-width: 30%;
     }
 `;
 
 export const WarriorCardNameNumber = styled.h1`
     font-weight: 600;
     font-size: 26px;
+    width: 90%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 
     @media ${device.tablet} {
         font-size: 50px;
@@ -34,6 +39,12 @@ export const WarriorCardSkill = styled.p`
     @media ${device.tablet} {
         font-size: 30px;
     }
+
+    @media ${device.laptop} {
+        margin: 25px 0px;
+        font-size: 25px;
+    }
+
 `;
 
 // export const WarriorCardDescribe = styled.p`
@@ -59,14 +70,23 @@ export const WarriorButton = `
         font-size: 26px;
         width: 48%;
     }
+
+    @media ${device.laptop} {
+        width: 100%;
+        padding: 16px;
+        font-size: 18px;
+    }
 `;
 
 export const WarriorCardButtonLink = styled(Link)`
     ${WarriorButton};
     margin-top: 10px;
-    // background: #FFFFFF;
-    //color: #000000;
     color: #FFFFFF;
+
+    &:hover{ 
+      cursor: pointer;
+      color: #069FB8;
+    }
 `;
 
 export const WarriorCardButton = styled.button`
@@ -76,10 +96,23 @@ export const WarriorCardButton = styled.button`
     margin-top: 10px;
     border-color: ${props => props.status};
 
-    &:disabled {
-        border-color: #FFFFFFAA;
-        color: #FFFFFFAA;
+    &:hover{ 
+      cursor: pointer;
+      color: ${props => props.status};
     }
+
+    &[type='submit'] {
+        &:enabled {
+            border-color: #FFFFFFAA;
+            background: #FFFFFF;
+            color: #000000;
+        }
+        &:disabled {
+            border-color: #FFFFFFAA;
+            color: #FFFFFFAA;
+        }
+    }
+
 `;
 
 export const WarriorCardOverflow = styled.div`
@@ -90,9 +123,15 @@ export const WarriorCardOverflow = styled.div`
     font-family: Roboto;
     font-size: ${props => props.fs || '16px'};
     color: ${props => props.fc || '#FFFFFF'};
+    word-break: break-all;
 
     @media ${device.tablet} {
         font-size: 26px;
+    }
+
+    @media ${device.laptop} {
+        font-size: 18px;
+        margin: 10px 0px;
     }
 `;
 
@@ -106,7 +145,7 @@ export const WarriorCardDescription = styled.p`
     }
 `;
 
-export const WarriorButtonWrapper = styled.div`
+export const WarriorButtonTemplate = `
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -116,6 +155,15 @@ export const WarriorButtonWrapper = styled.div`
         justify-content: space-around;
         margin: 10px 0px;
     }
+
+    @media ${device.laptop} {
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
+export const WarriorButtonWrapper = styled.div`
+    ${WarriorButtonTemplate};
 `;
 
 export const WarriorCardImage = styled.img`
@@ -124,6 +172,7 @@ export const WarriorCardImage = styled.img`
     margin: ${props => props.margin || '0'};
 
     @media ${device.tablet} {
+        min-height: 300px;
         width: 300px;
     }
 `;

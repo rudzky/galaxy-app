@@ -43,6 +43,16 @@ export const MainHeader = styled.h1`
   @media ${device.tablet} {
     font-size: 50px;
   }
+
+  @media ${device.laptop} {
+    width: 100%;
+  }
+
+  @media ${device.laptopL} {
+    font-size: 60px;
+    margin: 35px 0px;
+  }
+
   `;
 
 export const MainHeaderSpan = styled.span`

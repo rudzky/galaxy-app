@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
 import { 
@@ -12,14 +11,9 @@ import {
 
 export default function NotFound() {
 
-    const history = useHistory();
     let { pathname } = useLocation();
 
     const [linksContext, setLinksContext] = useContext(MenuContext);
-
-    const goBackHandle = () => {
-        history.goBack();
-    };
 
     useEffect(() => {
         setLinksContext(pathname);
@@ -28,11 +22,6 @@ export default function NotFound() {
     return (
         <ErrorContainer>
             <ErrorCode>Błąd 404</ErrorCode>
-            {/* <button
-                onClick={goBackHandle}
-            >
-                Wróć
-            </button> */}
 
             <ErrorText>
                 Mmm… Planetę mistrz Obi-Wan zgubił.
@@ -48,7 +37,6 @@ export default function NotFound() {
                 </ErrorButton>
             </ErrorButtonWrapper>
 
-            
         </ErrorContainer>
     )
 }

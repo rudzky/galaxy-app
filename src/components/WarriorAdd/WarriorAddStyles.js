@@ -33,7 +33,7 @@ const WarriorAddInput__all = `
     background: transparent;
     border: none;
     padding: 15px;
-    caret-color: rgba(255, 233, 31, 0.747);
+    caret-color: #FFFFFF;
 
     &:focus {
         outline: none;
@@ -42,12 +42,20 @@ const WarriorAddInput__all = `
     @media ${device.tablet} {
         font-size: 20px;
     }
+
+    @media ${device.laptop} {
+        width: 30%;
+    }
 `;
 
 export const WarriorAddInputs = styled.input`
     ${WarriorAddInput__all} 
     width: ${props => props.customWidth || '80%'};
     border-bottom: 1px solid ${props => props.color};
+
+    @media ${device.laptop} {
+        width: 20%;
+    }
 `;
 
 export const WarriorAddTextarea = styled.textarea`
@@ -69,4 +77,19 @@ export const WarriorAddLink = styled(Link)`
     @media ${device.tablet} {
         font-size: 26px;
     }
+
+    @media ${device.laptop} {
+        padding: 16px;
+        font-size: 18px;
+    }
 `; 
+
+export const WarriorAddButtonWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;    
+
+    @media ${device.laptop} {
+        width: 30%;
+    }    
+`;

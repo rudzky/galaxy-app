@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import MenuContext from '../../contexts/MenuContext';
-// import { LI } from './MenuStyles';
 import logo from '../../assets/logo.svg';
 import HamburgerMenu from 'react-hamburger-menu';
 import MobileMenu from './MobileMenu';
@@ -15,7 +13,8 @@ import {
     MenuNavigationMobileList,
     MenuMobileLink,
     MenuListItem,
-    MenuDesktopList
+    MenuDesktopList,
+    MenuBack
 } from './MenuStyles';
 
 export default function Menu() {
@@ -61,10 +60,7 @@ export default function Menu() {
             <MenuNavigation>
                 {(linksContext === "/") ? 
                     (<MenuNavigationLogo src={logo} alt="logo"/>) :
-                    (isMobile ?
-                        <p onClick={goBackHandle}>Back</p> :
-                        <MenuNavigationLogo src={logo} alt="logo"/>
-                    )
+                    (<MenuBack onClick={goBackHandle}>Wróć</MenuBack>)
                 }
                 
                 {

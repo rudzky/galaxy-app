@@ -8,7 +8,11 @@ import {
     WarriorSubPageContainer,
     WarriorSubPageDescriptWrapper,
     WarriorSubPageInfoWrapper,
-    WarriorSubPageParagraph
+    WarriorSubPageParagraph,
+    WarriorSubPageButton,
+    WarriorSubPageButtonWrapper,
+    WarriorSubPageSpan,
+    WarriorSubPageName
 } from './WarriorSubPageStyles';
 import {
     WarriorCardNameNumber,
@@ -94,19 +98,23 @@ export default function WarriorSubPage({ show }) {
                     margin={'10px'}
                 />
 
-                <WarriorCardNameNumber>
-                    {name} 
-                </WarriorCardNameNumber>
-                
-                <WarriorCardNameNumber>
-                    #{number}
-                </WarriorCardNameNumber>
-                
-                <WarriorCardSkill>
-                    Skill: {skill}
-                </WarriorCardSkill>
+                <WarriorSubPageSpan>
 
+                    <WarriorSubPageName>
+                        {name} 
+                    </WarriorSubPageName>
+                    
+                    <WarriorSubPageName>
+                        #{number}
+                    </WarriorSubPageName>
+
+                </WarriorSubPageSpan>
+                
             </WarriorSubPageInfoWrapper>
+
+            <WarriorCardSkill>
+                Skill: {skill}
+            </WarriorCardSkill>
             
             <WarriorSubPageDescriptWrapper>
                 <WarriorSubPageParagraph>
@@ -114,26 +122,22 @@ export default function WarriorSubPage({ show }) {
                 </WarriorSubPageParagraph> 
             </WarriorSubPageDescriptWrapper>
             
-            <WarriorButtonWrapper>
-                <WarriorCardButton
-                onClick={show}
+            <WarriorSubPageButtonWrapper>
+                <WarriorSubPageButton
+                    onClick={show}
                 back={'#AE0909'}
-                status={'#AE0909'}
+                    status={'#AE0909'}
                 >
                     Rezerwa
-                </WarriorCardButton>
-                <WarriorCardButton 
+                </WarriorSubPageButton>
+                <WarriorSubPageButton 
                     onClick={handleAddToMyList}
-                    // back={handleColorStatus}
                     status={handleColorStatus}
                 >
                     {addToListButton ? 'Dodaj do' : 'Usuń z'} mojej listy
-                </WarriorCardButton>
-            </WarriorButtonWrapper>
+                </WarriorSubPageButton>
+            </WarriorSubPageButtonWrapper>
             
-
-            
-
         </WarriorSubPageContainer>
     )
 }

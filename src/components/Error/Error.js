@@ -1,12 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { 
+    ErrorContainer, 
+    ErrorCode, 
+    ErrorText, 
+    ErrorButton,
+    ErrorButtonWrapper 
+} from '../404/NotFoundStyles';
 
-export default function Error({ again }) {
+export default function Error({ refresh }) {
     return (
-        <div>
-            <h1>Wystąpił błąd</h1>
-            <h2>Brak danych</h2>
-            <Link to="/" onClick={again}>Ponów próbę</Link>
-        </div>
+        <ErrorContainer>
+            <ErrorText>Wystąpił błąd</ErrorText>
+            <ErrorCode>Brak danych</ErrorCode>
+            <ErrorButtonWrapper>
+                <ErrorButton
+                    to="/" onClick={refresh}
+                >
+                    Ponów próbę
+                </ErrorButton>
+            </ErrorButtonWrapper>
+        </ErrorContainer>
     );
 }

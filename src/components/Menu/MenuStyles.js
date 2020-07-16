@@ -33,6 +33,15 @@ export const MenuListItem = styled.li`
       font-size: 20px;
       margin-left: 20px;
     }
+
+    @media ${device.laptop} {
+      font-size: 16px;
+    }
+
+    &:hover{ 
+      cursor: pointer;
+      color: #a6f3ffbb;
+    }
 `;
 
 export const MenuHeader = styled.header`
@@ -50,6 +59,12 @@ export const MenuNavigation = styled.nav`
   top: 0;
   left: 0;
   z-index: 11;
+
+  backdrop-filter: blur(5px);
+
+  @media ${device.laptopL} {
+    padding: 20px 50px 10px;
+  }
 `;
 
 export const MenuNavigationMobile = styled.nav`
@@ -60,6 +75,7 @@ export const MenuNavigationMobile = styled.nav`
   height: 100%;
   background: #000000d1;
   z-index: 9;
+  backdrop-filter: blur(5px);
 `;
 
 export const MenuNavigationLogo = styled.img`
@@ -87,5 +103,25 @@ export const MenuDesktopList = styled.ul`
   padding: 0px;
   list-style: none;
   display: inline-flex;
+`;
+
+export const MenuBack = styled.p`
+
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.9px;
+
+  @media ${device.tablet} {
+    font-size: 20px;
+  }
+
+  @media ${device.laptop} {
+    font-size: 16px;
+  }
+
+  &:hover{ 
+    cursor: pointer;
+    color: #a6f3ffbb;
+  }
 `;
 
