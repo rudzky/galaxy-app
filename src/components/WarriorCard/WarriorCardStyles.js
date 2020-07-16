@@ -7,9 +7,13 @@ export const WarriorCardSection = styled.section`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 1px solid #FFFFFF;
+    border: 2px solid #FFFFFF;
     padding: 15px;
     margin-bottom: 20px;
+
+    @media ${device.laptop} {
+        flex-basis: 48%;
+    }
 `;
 
 export const WarriorCardNameNumber = styled.h1`
@@ -115,10 +119,17 @@ export const WarriorButtonWrapper = styled.div`
 `;
 
 export const WarriorCardImage = styled.img`
-    width: 100px;
+    width: 150px;
+    min-height: 150px;
+    margin: ${props => props.margin || '0'};
+
+    @media ${device.tablet} {
+        width: 300px;
+    }
 `;
 
 export const WarriorCardImageWrapper = styled.div`
     width: 200px;
     height: 200px;
+    background: url(${props => props.src});
 `;

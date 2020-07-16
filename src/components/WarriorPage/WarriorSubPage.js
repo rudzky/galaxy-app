@@ -15,7 +15,8 @@ import {
     WarriorCardSkill,
     WarriorCardButton,
     WarriorButtonWrapper,
-    WarriorCardImageWrapper
+    WarriorCardImageWrapper,
+    WarriorCardImage
 } from '../WarriorCard/WarriorCardStyles';
 
 export default function WarriorSubPage({ show }) {
@@ -77,7 +78,7 @@ export default function WarriorSubPage({ show }) {
             
             <WarriorSubPageInfoWrapper>
 
-                <WarriorCardImageWrapper>
+                {/* <WarriorCardImageWrapper>
                     <Image 
                         src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`}
                         width='100%'
@@ -86,7 +87,12 @@ export default function WarriorSubPage({ show }) {
                         lazyLoad 
                         style={{marginBottom: '10px'}}
                     />
-                </WarriorCardImageWrapper>
+                </WarriorCardImageWrapper> */}
+
+                <WarriorCardImage 
+                    src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`} 
+                    margin={'10px'}
+                />
 
                 <WarriorCardNameNumber>
                     {name} 

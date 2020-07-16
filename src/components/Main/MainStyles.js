@@ -24,6 +24,12 @@ export const MainContainer = styled.section`
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
+
+  @media ${device.laptop} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 `;
 
 export const MainHeader = styled.h1`

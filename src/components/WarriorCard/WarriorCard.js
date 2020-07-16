@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
-import { Image } from 'react-image-and-background-image-fade';
+// import { Image } from 'react-image-and-background-image-fade';
+import ImageFadeIn from "react-image-fade-in";
+
 import { 
     WarriorCardSection, 
     WarriorCardNameNumber, 
@@ -60,17 +62,17 @@ export default function WarriorCard({ identy }) {
             {/* <WarriorCardImageWrapper 
                 src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`}
             /> */}
-                {/* <WarriorCardImage src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} /> */}
+            <WarriorCardImage src={`http://source.unsplash.com/random/200x200?${name.trim().toLowerCase()}`} />
 
             {/* <WarriorCardImageWrapper> */}
-                <Image 
+                {/* <Image 
                     src={imageLink}
                     style={{ backgroundSize: 'cover',backgroundPosition: 'center top' }} 
                     width='100%'
                     height='100%'
                     isResponsive 
                     lazyLoad 
-                />
+                /> */}
             {/* </WarriorCardImageWrapper> */}
             
             <WarriorCardNameNumber>{name}</WarriorCardNameNumber>
