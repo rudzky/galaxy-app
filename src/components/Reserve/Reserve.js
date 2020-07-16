@@ -3,7 +3,8 @@ import {Redirect} from 'react-router-dom';
 import AllWarriorsContext from '../../contexts/AllWariorsContext';
 import MyWarriorsContext from '../../contexts/MyWarriorsContext';
 import { 
-    ReserveContainer 
+    ReserveContainer,
+    ReserveButtonWrapper
 } from './ReserveStyles';
 import { 
     MainHeader 
@@ -67,7 +68,7 @@ export default function Reserve({ identy, hide }) {
                 Czy jesteś pewien swojej decyzji?
             </MainHeader>
 
-            <div>
+            <ReserveButtonWrapper>
                 <WarriorCardButton
                 onClick={handleSendToReserve}
                 back={'#AE0909'}
@@ -81,7 +82,7 @@ export default function Reserve({ identy, hide }) {
             >
                 Anuluj
             </WarriorCardButton>
-            </div>
+            </ReserveButtonWrapper>
             
             <MainHeader>
                 Jeśli nie jesteś ze mną, stałeś się moim wrogiem.

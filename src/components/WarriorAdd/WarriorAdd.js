@@ -149,9 +149,9 @@ export default function WarriorAdd() {
                 redirect && <Redirect to="/" />
             }
 
-            {
+            {/* {
                 !isMobile && <button onClick={goBackHandle}>Wróć</button>
-            }
+            } */}
 
             <WarriorAddForm onSubmit={addWarrior}>
 

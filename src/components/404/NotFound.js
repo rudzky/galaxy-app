@@ -2,7 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import MenuContext from '../../contexts/MenuContext';
-import { ErrorContainer, ErrorCode, ErrorText, ErrorButton } from './NotFoundStyles';
+import { 
+    ErrorContainer, 
+    ErrorCode, 
+    ErrorText, 
+    ErrorButton,
+    ErrorButtonWrapper 
+} from './NotFoundStyles';
 
 export default function NotFound() {
 
@@ -34,11 +40,15 @@ export default function NotFound() {
                 Co za wstyd, to ogromny wstyd…
             </ErrorText>
 
-            <ErrorButton
-                to="/"
-            >
-                Wróć w bezpieczne miejsce
-            </ErrorButton>
+            <ErrorButtonWrapper>
+                <ErrorButton
+                    to="/"
+                >
+                    Wróć w bezpieczne miejsce
+                </ErrorButton>
+            </ErrorButtonWrapper>
+
+            
         </ErrorContainer>
     )
 }

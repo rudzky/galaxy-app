@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { size, device } from '../Main/MainStyles';
 
 export const WarriorAddContainer = styled.section`
     min-height: 87vh;
@@ -16,6 +17,10 @@ export const WarriorAddForm = styled.form`
     width: 100%;
     padding: 0px 20px 20px;
     min-height: 87vh;
+    justify-content: space-evenly;
+    // @media ${device.tablet} {
+    //     justify-content: space-evenly;
+    // }
 `;
 
 const WarriorAddInput__all = `
@@ -32,8 +37,10 @@ const WarriorAddInput__all = `
 
     &:focus {
         outline: none;
-        // box-shadow: 0 4px 2px -2px #FFE81F;
-        //border-bottom: 1px solid #FFE81F;
+    }
+
+    @media ${device.tablet} {
+        font-size: 20px;
     }
 `;
 
@@ -58,4 +65,8 @@ export const WarriorAddLink = styled(Link)`
     text-decoration: none;
     margin-top: 10px;
     padding: 18px;
+
+    @media ${device.tablet} {
+        font-size: 26px;
+    }
 `; 

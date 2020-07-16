@@ -25,6 +25,7 @@ export const WarriorCardSkill = styled.p`
     font-size: 20px;
     color: #FFE81F;
     margin: 5px 0px;
+    text-align: center;
 
     @media ${device.tablet} {
         font-size: 30px;
@@ -42,7 +43,7 @@ export const WarriorCardSkill = styled.p`
 
 export const WarriorButton = `
     color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+    border: 5px solid #FFFFFF;
     padding: 18px;
     text-decoration: none;
     font-size: 16px;
@@ -52,19 +53,22 @@ export const WarriorButton = `
     @media ${device.tablet} {
         padding: 28px;
         font-size: 26px;
+        width: 48%;
     }
 `;
 
 export const WarriorCardButtonLink = styled(Link)`
     ${WarriorButton};
     margin-top: 10px;
-    background: #FFFFFF;
-    color: #000000;
+    // background: #FFFFFF;
+    //color: #000000;
+    color: #FFFFFF;
 `;
 
 export const WarriorCardButton = styled.button`
     ${WarriorButton};
-    background: ${props => props.back || 'transparent'};
+    //background: ${props => props.back || 'transparent'};
+    background: transparent;
     margin-top: 10px;
     border-color: ${props => props.status};
 
@@ -78,12 +82,13 @@ export const WarriorCardOverflow = styled.div`
     display: flex;
     justify-content: center;
     width: 90%;
-    margin: 20px 0px;
+    margin: 15px 0px;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: ${props => props.fs || '16px'};
+    color: ${props => props.fc || '#FFFFFF'};
 
     @media ${device.tablet} {
-        font-size: 20px;
+        font-size: 26px;
     }
 `;
 
@@ -94,5 +99,17 @@ export const WarriorCardDescription = styled.p`
 
     @media ${device.tablet} {
         font-size: 24px;
+    }
+`;
+
+export const WarriorButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media ${device.tablet} {
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 10px 0px;
     }
 `;

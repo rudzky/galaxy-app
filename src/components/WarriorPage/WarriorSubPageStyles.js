@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { size, device } from '../Main/MainStyles';
 
 export const WarriorSubPageContainer = styled.section`
     min-height: 87vh;
@@ -19,4 +20,13 @@ export const WarriorSubPageInfoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+export const WarriorSubPageParagraph = styled.p`
+    font-size: 18px;
+    text-align: justify;
+
+    @media ${device.tablet} {
+        font-size: 24px;
+    }
 `;

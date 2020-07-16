@@ -9,7 +9,8 @@ import {
     WarriorCardButtonLink,
     WarriorCardButton,
     WarriorCardOverflow,
-    WarriorCardDescription
+    WarriorCardDescription,
+    WarriorButtonWrapper
 } from './WarriorCardStyles';
 import Truncate from 'react-truncate';
 
@@ -52,7 +53,14 @@ export default function WarriorCard({ identy }) {
             {/* <img src={`http://source.unsplash.com/random/50x50?${name.trim().toLowerCase()}`} alt=""/> */}
             {/* <img src={`http://source.unsplash.com/random/50x50?jedi`} alt=""/> */}
             <WarriorCardNameNumber>{name}</WarriorCardNameNumber>
-            <WarriorCardSkill>Skill: {skill}</WarriorCardSkill>
+
+            <WarriorCardOverflow fs={'20px'} fc={'#FFE81F'}>
+                <Truncate lines={2} ellipsis={'...'}>
+                    Skill: {skill}
+                </Truncate>
+            </WarriorCardOverflow>
+
+            {/* <WarriorCardSkill>Skill: {skill}</WarriorCardSkill> */}
             
             {/* <WarriorCardOverflow>
                 <WarriorCardDescription>
@@ -66,20 +74,28 @@ export default function WarriorCard({ identy }) {
                 </Truncate>
             </WarriorCardOverflow>
             
+            <WarriorButtonWrapper>
+                <WarriorCardButtonLink
+                    to={`/warrior_page/${number}`} 
+                >
+                    Wyświetl szczegóły
+                </WarriorCardButtonLink>
+                <WarriorCardButton 
+                    status={handleColorStatus}
+                    onClick={handleAddToMyList}
+                >
+                    {addToListButton ? 'Dodaj do' : 'Usuń z'} mojej listy
+                </WarriorCardButton>
+            </WarriorButtonWrapper>
             
             
-            <WarriorCardButtonLink
-                to={`/warrior_page/${number}`} 
-            >
-                Wyświetl szczegóły
-            </WarriorCardButtonLink>
             
-            <WarriorCardButton 
+            {/* <WarriorCardButton 
                 status={handleColorStatus}
                 onClick={handleAddToMyList}
             >
                 {addToListButton ? 'Dodaj do' : 'Usuń z'} mojej listy
-            </WarriorCardButton>
+            </WarriorCardButton> */}
 
         </WarriorCardSection>
     );
