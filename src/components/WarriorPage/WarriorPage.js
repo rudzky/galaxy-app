@@ -24,6 +24,7 @@ export default function WarriorPage() {
         setSubpageView(false);
         setReserveView(true);
     };
+
     const hideReserve = () => {
         setReserveView(false);
         setSubpageView(true);

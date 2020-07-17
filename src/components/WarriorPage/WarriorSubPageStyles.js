@@ -94,6 +94,8 @@ export const WarriorSubPageSpan = styled.span`
 `;
 
 export const WarriorSubPageName = styled.h1`
+    font-family: Staatliches;
+    letter-spacing: .9px;
     font-weight: 600;
     font-size: 26px;
 
